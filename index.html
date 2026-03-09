@@ -1,51 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="description" content="My first website">
-        <meta name="keywords" content="INFO1601, uwi, web">
-        <title>My First Page</title>
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <header>
-            <h1>This is my first website</h1>
-        </header>
+<head>
+    <meta charset="UTF-8">
+    <title>Index Sign Up</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 2rem auto; padding: 1rem; }
+        fieldset { margin-bottom: 1.5rem; padding: 1rem; border: 1px solid #ccc; border-radius: 8px; }
+        legend { font-weight: bold; padding: 0 0.5rem; }
+        label { display: block; margin: 0.8rem 0 0.3rem; }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select {
+            width: 100%; padding: 0.5rem; box-sizing: border-box;
+        }
+        .checkbox-group { margin: 0.5rem 0; }
+        .checkbox-group label { display: inline; margin-right: 1.2rem; font-weight: normal; }
+        button, input[type="submit"] {
+            padding: 0.7rem 1.5rem; background: #0665cb; color: rgba(255, 255, 255, 0.911); border: none;
+            border-radius: 4px; cursor: pointer; font-size: 1rem;
+        }
+        .nav-buttons { margin-top: 1.5rem; display: flex; justify-content: space-between; }
+    </style>
+</head>
+<body>
 
-        <article>
-            <section>
-                <h2>Welcome</h2>
-            </section>
+<h1>My Sign Up Form</h1>
 
-           <section>
-                <figure>
-                    <img src="https://media.istockphoto.com/id/1482199015/photo/happy-puppy-welsh-corgi-14-weeks-old-dog-winking-panting-and-sitting-isolated-on-white.jpg?s=1024x1024&w=is&k=20&c=XCKHaoM9oG4ST-sLawqYyutywWXkx3DYWb4MKhLUBrI=" alt="a cute dog">
-                    <figcaption>Fig 1. A Cute Dog </figcaption>
-                </figure>
-           </section>
+<form action="results.html" method="GET">
+    
+    <fieldset>
+        <legend>Demographic Info</legend>
+        
+        <label for="fullname">Full Name</label>
+        <input type="text" id="fullname" name="fullname" placeholder="Enter your name" required>
+        
+        <label for="sex">Sex</label>
+        <select id="sex" name="sex" required>
+            <option value="">Select</option>
+            <option value="male">male</option>
+            <option value="female">female</option>
+            <option value="other">other</option>
+        </select>
+        
+        <label for="dob">Date Of Birth</label>
+        <input type="date" id="dob" name="dob" value="2000-01-01" required>
+        
+    </fieldset>
+    
+    <fieldset>
+        <legend>Contact Info</legend>
+        
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="e.g. info@example.com" required>
+        
+        <label for="county">County</label>
+        <select id="county" name="county">
+            <option value="">Select county</option>
+            <option value="Caroni">Caroni</option>
+            <option value="Mayaro">Mayaro</option>
+            <option value="Arima">Arima</option>
+            <option value="Arouca">Arouca</option>
+            <option value="Couva">Couva</option>
+            <option value="St Augustine">St Augustine</option>
+            <option value="Sangre Grande">Sangre Grande</option>
+            <option value="Rio Claro">Rio Claro</option>
+        </select>
+        
+        <label for="telephone">Telephone</label>
+        <input type="tel" id="telephone" name="telephone" placeholder="e.g. +1-868-XXX-XXXX">
+        
+    </fieldset>
+    
+    <fieldset>
+        <legend>Courses</legend>
+        
+        <div class="checkbox-group">
+            <input type="checkbox" id="info1601" name="courses" value="info1601" checked>
+            <label for="info1601">Info 1601</label>
+            
+            <input type="checkbox" id="comp1602" name="courses" value="comp1602">
+            <label for="comp1602">COMP 1602</label>
+            
+            <input type="checkbox" id="comp1603" name="courses" value="comp1603">
+            <label for="comp1603">COMP 1603</label>
+            
+            <input type="checkbox" id="comp1604" name="courses" value="comp1604">
+            <label for="comp1604">COMP 1604</label>
+        </div>
+        
+    </fieldset>
+    
+    <div class="nav-buttons">
+        <button type="button">Back</button>
+        <input type="submit" value="signup">
+    </div>
+    
+</form>
 
-           <section>
-               <details>
-                   <summary>Hobbies</summary>
-                   <ul>
-                    <li>Swimming</li>
-                    <li>Coding</li>
-                    <li>Music</li>
-                    <li>Memeing</li>
-                </ul>
-               </details>
-            </section>
+</body>
+</html>
 
-            <dialog id="mydialog">
-                This is a dialog
-                <a href="javascript:mydialog.removeAttribute('open')">close</a>
-            </dialog>
-
-            <a href="javascript:document.querySelector('#mydialog').setAttribute('open', true)">
-                Open Dialog
-            </a>
-
-        </article>
-           
-    </body>
-<html>
