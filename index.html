@@ -1,100 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Index Sign Up</title>
-    <style>
-        body { font-family: Arial, sans-serif; max-width: 600px; margin: 2rem auto; padding: 1rem; }
-        fieldset { margin-bottom: 1.5rem; padding: 1rem; border: 1px solid #ccc; border-radius: 8px; }
-        legend { font-weight: bold; padding: 0 0.5rem; }
-        label { display: block; margin: 0.8rem 0 0.3rem; }
-        input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select {
-            width: 100%; padding: 0.5rem; box-sizing: border-box;
-        }
-        .checkbox-group { margin: 0.5rem 0; }
-        .checkbox-group label { display: inline; margin-right: 1.2rem; font-weight: normal; }
-        button, input[type="submit"] {
-            padding: 0.7rem 1.5rem; background: #0665cb; color: rgba(255, 255, 255, 0.911); border: none;
-            border-radius: 4px; cursor: pointer; font-size: 1rem;
-        }
-        .nav-buttons { margin-top: 1.5rem; display: flex; justify-content: space-between; }
-    </style>
-</head>
-<body>
+body {
+    width: 100%;                  
+    margin: 0;                    
+    padding: 0;                   
+    background-color: #fafafa; 
+    
+    The Stories Section
+.stories {   
+    height: 90px;                           
+    width: 70vw;                            
+    margin-top: -5px;                    
+    margin-left: auto;                      
+    margin-right: auto;                    
+    border: 1px solid #b5b5b5;              
+    border-radius: 2px;                     
+    padding: 30px;                          
+    
+}
 
-<h1>My Sign Up Form</h1>
 
-<form action="results.html" method="GET">
-    
-    <fieldset>
-        <legend>Demographic Info</legend>
-        
-        <label for="fullname">Full Name</label>
-        <input type="text" id="fullname" name="fullname" placeholder="Enter your name" required>
-        
-        <label for="sex">Sex</label>
-        <select id="sex" name="sex" required>
-            <option value="">Select</option>
-            <option value="male">male</option>
-            <option value="female">female</option>
-            <option value="other">other</option>
-        </select>
-        
-        <label for="dob">Date Of Birth</label>
-        <input type="date" id="dob" name="dob" value="2000-01-01" required>
-        
-    </fieldset>
-    
-    <fieldset>
-        <legend>Contact Info</legend>
-        
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="e.g. info@example.com" required>
-        
-        <label for="county">County</label>
-        <select id="county" name="county">
-            <option value="">Select county</option>
-            <option value="Caroni">Caroni</option>
-            <option value="Mayaro">Mayaro</option>
-            <option value="Arima">Arima</option>
-            <option value="Arouca">Arouca</option>
-            <option value="Couva">Couva</option>
-            <option value="St Augustine">St Augustine</option>
-            <option value="Sangre Grande">Sangre Grande</option>
-            <option value="Rio Claro">Rio Claro</option>
-        </select>
-        
-        <label for="telephone">Telephone</label>
-        <input type="tel" id="telephone" name="telephone" placeholder="e.g. +1-868-XXX-XXXX">
-        
-    </fieldset>
-    
-    <fieldset>
-        <legend>Courses</legend>
-        
-        <div class="checkbox-group">
-            <input type="checkbox" id="info1601" name="courses" value="info1601" checked>
-            <label for="info1601">Info 1601</label>
-            
-            <input type="checkbox" id="comp1602" name="courses" value="comp1602">
-            <label for="comp1602">COMP 1602</label>
-            
-            <input type="checkbox" id="comp1603" name="courses" value="comp1603">
-            <label for="comp1603">COMP 1603</label>
-            
-            <input type="checkbox" id="comp1604" name="courses" value="comp1604">
-            <label for="comp1604">COMP 1604</label>
-        </div>
-        
-    </fieldset>
-    
-    <div class="nav-buttons">
-        <button type="button">Back</button>
-        <input type="submit" value="signup">
-    </div>
-    
-</form>
+.user {
+    width: 18%;                   
+    display: inline-block;        
+}
 
-</body>
-</html>
+
+.user p {
+    text-align: center;           
+    margin: 0;                    
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;  
+    font-weight: 100;             
+    font-size: smaller;           
+}
+
+
+.post-header {
+    color: white;                        
+    height: 50px;                        
+    padding: 5px;                        
+    border-bottom: 1px solid #b5b5b5;    
+    width: inherit;                      
+    box-sizing: border-box;              
+}
+
+
+.navbar {   
+    display: inline-block;               
+    color: white;                        
+    width: 100%;                         
+    height: 54px;                        
+    border-bottom: 1px solid #e5e5e5;    
+    background-color: white;             
+}
+
+
+.instagrn-img, .instagram-image {   
+    height: 40px;                   
+    position: relative;           
+}
+
+
+.search-box, input[type="search"], .search {   
+    height: 25px;                            
+    position: relative;                     
+    width: 30vw;                            
+    margin-left: 35vw;                     
+    background-color: #fafafa;               
+    text-align: center;                      
+    border: 1px solid #b5b5b5;               
+    border-radius: 3px;                     
+}
+
+
+.actions-img, .actions {
+    height: 40px;
+    position: relative;
+}
+
+
+.user img {
+    margin-top: 5px;                   
+    border-radius: 50%;                
+    border: 4px double #b5b5b5;      
+    width: 56px;                       
+    height: 56px;                      
+    display: block;                   
+    margin-left: auto;                 
+    margin-right: auto;                
+}
+
+
+.post {
+    border: 1px solid #b5b5b5;              
+    border-radius: 2px;                  
+    height: 60vh;                           
+    width: 560px;                           
+    margin-left: 119px;                    
+    margin-right: 119px;                    
+    margin-top: 10px;                       
+}
+
+
 
