@@ -1,41 +1,120 @@
-function getAverageGrade(student, course) {
-  const courseObj = findCourse(student.transcript, course);
-  if (!courseObj || !courseObj.grades || courseObj.grades.length === 0) {
-    return -1;
-  }
-  
-  const sum = courseObj.grades.reduce((acc, grade) => acc + grade, 0);
-  return sum / courseObj.grades.length;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax Demo</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        body { padding-left: 10px; }
+        main { padding: 40px; }
+        nav { margin-bottom: 20px; }
+        table { width: 100%; }
+        th, td { padding: 12px !important; }
+    </style>
+</head>
+<body>
 
+    <nav>
+        <div class="nav-wrapper teal" style="padding-left: 10px;">
+            <a href="#!" class="brand-logo">Ajax Demo</a>
+        </div>
+    </nav>
 
-function getAssignmentMark(student, course, num) {
-  const courseObj = findCourse(student.transcript, course);
-  if (!courseObj || !courseObj.grades || num < 1 || num > courseObj.grades.length) {
-    return -1;
-  }
-  
-  // num is 1-based → index = num - 1
-  return courseObj.grades[num - 1];
-}
+    <main>
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>name</th>
+                    <th>Type</th>
+                    <th>website</th>
+                </tr>
+            </thead>
+            <tbody id="result">
+            </tbody>
+        </table>
+    </main>
 
+    <script>
+       
+        function drawTable(records) {
+            let result = document.querySelector('#result');
+            let html = '';  
 
-function courseAverageAssessment(students, courseName, assignment) {
-  let total = 0;
-  let count = 0;
-  
-  for (const student of students) {
-    const mark = getAssignmentMark(student, courseName, assignment);
-    if (mark !== -1) {
-      total += mark;
-      count++;
-    }
-  }
-  
-  if (count === 0) {
-    return -1;   
-  }
-  
-  return total / count;
-}
+            for (let record of records) {
+                html += `
+                    <tr id="${record.id}">
+                        <td>${record.id}</td>
+                        <td>
+                            <a href="#${record.id}" 
+                               onclick="getData('https://api.openbrewerydb.org/breweries/${record.id}', drawDetails)">
+                               ${record.name}
+                            </a>
+                        </td>
+                        <td>${record.brewery_type || '—'}</td>
+                        <td>${record.website_url ? `<a href="${record.website_url}" target="_blank">${record.website_url}</a>` : '—'}</td>
+                    </tr>
+                `;
+            }
 
+            result.innerHTML = html;   
+        }
+
+        
+        function drawDetails(record) {
+            let result = document.querySelector('#result');
+            let html = `
+                <tr style="background-color: #e0f7fa;">
+                    <td colspan="4" style="font-weight:bold; text-align:center;">
+                        Selected Brewery Details
+                    </td>
+                </tr>
+                <tr>
+                    <td>${record.id}</td>
+                    <td>${record.name}</td>
+                    <td>${record.brewery_type || '—'}</td>
+                    <td>${record.website_url ? `<a href="${record.website_url}" target="_blank">${record.website_url}</a>` : '—'}</td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <strong>Address:</strong> ${record.street || '—'}, ${record.city || '—'}, ${record.state || '—'} ${record.postal_code || '—'}<br>
+                        <strong>Phone:</strong> ${record.phone || '—'}<br>
+                        <strong>Country:</strong> ${record.country || '—'}
+                    </td>
+                </tr>
+                <tr><td colspan="4" style="text-align:center;">
+                    <button onclick="getData('https://api.openbrewerydb.org/breweries', drawTable)" class="btn teal">Back to list</button>
+                </td></tr>
+            `;
+            result.innerHTML = html;
+        }
+
+        
+        async function getData(url, renderFun) {
+            try {
+                let response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                let result = await response.json();
+                renderFun(result);          
+            } catch (e) {
+                console.log(e);
+                document.querySelector('#result').innerHTML = `
+                    <tr><td colspan="4" style="color:red; text-align:center;">
+                        Error loading data: ${e.message}
+                    </td></tr>
+                `;
+            }
+        }
+
+        
+        window.onload = function() {
+            getData("https://api.openbrewerydb.org/breweries", drawTable);
+        };
+    </script>
+
+</body>
+</html>
