@@ -1,94 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-</head>
-<style>
-* {
-        box-sizing: border-box;
+function getAverageGrade(student, course) {
+  const courseObj = findCourse(student.transcript, course);
+  if (!courseObj || !courseObj.grades || courseObj.grades.length === 0) {
+    return -1;
+  }
+  
+  const sum = courseObj.grades.reduce((acc, grade) => acc + grade, 0);
+  return sum / courseObj.grades.length;
 }
 
-header, footer, section, aside, main{
-        padding: 1em;
+
+function getAssignmentMark(student, course, num) {
+  const courseObj = findCourse(student.transcript, course);
+  if (!courseObj || !courseObj.grades || num < 1 || num > courseObj.grades.length) {
+    return -1;
+  }
+  
+  // num is 1-based → index = num - 1
+  return courseObj.grades[num - 1];
 }
 
-header, footer{
-        color: white;
-        background-color:  #0c253d;
-        flex-grow: 1;
+
+function courseAverageAssessment(students, courseName, assignment) {
+  let total = 0;
+  let count = 0;
+  
+  for (const student of students) {
+    const mark = getAssignmentMark(student, courseName, assignment);
+    if (mark !== -1) {
+      total += mark;
+      count++;
+    }
+  }
+  
+  if (count === 0) {
+    return -1;   
+  }
+  
+  return total / count;
 }
-
-aside{
-        display: flex;
-        justify-content: center;
-        color: #212121;
-        background-color: #0d304c;
-        flex-grow: 3;
-}
-section{
-        background-color: #5b122a;
-        color: white;
-        flex-grow: 1;
-        margin: 0.5em;
-}
-
-main{
-        background-color: #2196F3;
-        color: white;
-        flex-grow: 7;
-}
-
-body{
-        display: flex;
-        flex-direction: column;
-        background-color: #FFFFFF;
-        height: 100vh;
-        width: 100vw;
-        margin:0;
-}
-
-.row{
-        display: flex;
-        flex-direction: row;
-}
-
-div.row{
-        flex-grow: 8;
-}
-
-.col{
-        display: flex;
-        flex-direction: column;
-}
-
-@media screen and (max-width: 600px) {
-  div.row{
-                flex-direction: column;
-        }
-}
-
-</style>
-<body>
-
-<header>Header</header>
-<div class="row">
-                <aside class="col">
-                <section>Section 1</section>
-                <section>Section 2</section>
-        </aside>
-        <main>Main</main>
-</div>
-
-<footer>Footer</footer>
-
-        
-</body>
-</html>
-
-
-
-
-
 
